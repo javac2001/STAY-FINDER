@@ -1,0 +1,83 @@
+<% layout('layouts/boilerplate') -%>
+
+    <body>
+        <script>
+            let cloudMapToken = "<%= process.env.CLOUD_MAP_TOKEN %>"
+            let mapLocation = <%- JSON.stringify(data) %>
+        </script>
+        <div class="travel-card">
+            <img src="<%= data.image.url %>" alt="Travel Destination" class="travel-image">
+            <div class="travel-content">
+                <p>owned by <strong>
+                        <%= data.owner.username %>
+                    </strong></p>
+                <h1 class="travel-title">
+                    <%= data.title %>
+                </h1>
+                <p class="travel-location">
+                    <%= data.location %>
+                </p>
+                <p class="travel-country">
+                    <%= data.country %>
+                </p>
+                <p class="travel-description">
+                    <textarea><%= data.description %></textarea>
+
+                </p>
+                <p class="travel-price">&#x20B9;<%= data.price.toLocaleString("en-IN")%> /Night
+                </p>
+                <% if(currentUser && currentUser._id.equals(data.owner._id) ){ %>
+                    <form action="/stayfinder/<%= data._id %>/edit" method="get">
+                        <button type="submit">EDIT</button>
+                    </form>
+                    <form action="/stayfinder/<%= data._id %>?_method=DELETE" method="post">
+                        <button type="submit">DELETE</button>
+                    </form>
+                    <% } %>
+            </div>
+        </div>
+        <hr>
+
+        <% if(currentUser){ %>
+            <a href="/stayfinder/<%= data._id %>/review">Leave a Review</a>
+            <% } %>
+                <div class="container mt-5 review-section">
+                    <h2 class="mb-4">Reviews</h2>
+                    <% if (data.review && data.review.length> 0) { %>
+                        <div class="row row-cols-1 g-4">
+                            <% data.review.forEach(function(review) { %>
+                                <div class="col">
+                                    <div class="card shadow-sm">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                @<%= review.owner.username %>
+                                            </h5>
+                                            <p class="starability-result" data-rating="<%= review.rating %>"></p>
+                                            <p class="card-text">
+                                                <%= review.comments %>
+                                            </p>
+                                            <% if(currentUser && currentUser._id.equals(review.owner._id)){ %>
+                                                <form
+                                                    action="/stayfinder/<%= data._id %>/review/<%= review._id %>?_method=DELETE"
+                                                    method="post">
+                                                    <button type="submit" class="btn-as-link">DELETE</button>
+                                                </form>
+
+                                                <% } %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }); %>
+                        </div>
+                        <% } else { %>
+                            <div class="alert alert-info" role="alert">
+                                No reviews yet. Be the first to review!
+                            </div>
+                            <% } %>
+                </div>
+                <hr>
+                <div id="map"></div>
+
+
+
+    </body>

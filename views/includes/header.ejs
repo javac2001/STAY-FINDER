@@ -1,0 +1,36 @@
+<header>
+  <nav class="navbar navbar-expand-md  shadow">
+    <div class="container-fluid">
+      <!-- Brand / Logo -->
+      <a class="navbar-brand" href="/stayfinder">
+        <img src="/img/logo.png" alt="stayfinder" class="logo-img">
+      </a>
+          <!-- Toggle Button for Mobile -->
+          <button class="navbar-toggler nav-button" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <i class="fa-solid fa-bars" id="rotateBar"></i>
+          </button>
+
+          <!-- Navbar Links -->
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+              <% if(!currentUser){ %>
+                <li class="nav-item">
+                  <a class="nav-link text-center" href="/stayfinder/signup"><strong><i class="fa-solid fa-user-plus"></i>&nbsp;SIGNUP</strong></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-center" href="/stayfinder/login"><strong><i class="fa-solid fa-right-to-bracket"></i> &nbsp;LOGIN</strong></a>
+                </li>
+                <% } else { %>
+                  <li class="nav-item">
+                    <a class="nav-link text-center" href="/stayfinder/create"><strong><i class="fa-solid fa-earth-americas"></i> &nbsp;Become a Host</strong></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-center" href="/stayfinder/logout"><strong><i class="fa-solid fa-right-from-bracket"></i> &nbsp;LOGOUT</strong></a>
+                  </li>
+                  <% } %>
+
+            </ul>
+          </div>
+    </div>
+  </nav>
+</header>

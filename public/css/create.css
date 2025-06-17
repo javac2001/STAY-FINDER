@@ -1,0 +1,15 @@
+.form-section {
+  padding: 60px 20px;
+  background-color: #fff;
+}
+
+.form-container {
+  max-width: 600px;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #f4a261 !important;
+  box-shadow: none !important;
+  background-color: #fff;
+}
