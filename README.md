@@ -57,7 +57,7 @@ You can log in to the demo version using the following credentials:
 
 ## 📷 Screenshots
 
-![StayFinder](./public/img/stayfinder-demo.png)  
+![StayFinder](./public/img/stayfinder-dem.png)  
 *Popular destinations display with pricing*
 
 ---
